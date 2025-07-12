@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vipin Pratap - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="1" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-info a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInLeft 0.6s ease-out forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+        .section:nth-child(5) { animation-delay: 0.8s; }
+        .section:nth-child(6) { animation-delay: 1s; }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .education-item, .project-item, .achievement-item {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(52, 152, 219, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover, .project-item:hover, .achievement-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .education-header, .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .degree, .project-title {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .institution {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .duration {
+            color: #e74c3c;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: rgba(155, 89, 182, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #9b59b6;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(155, 89, 182, 0.2);
+        }
+
+        .skill-title {
+            font-weight: 600;
+            color: #8e44ad;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-list {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .project-links {
+            margin-top: 1rem;
+        }
+
+        .project-links a {
+            color: #3498db;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 2px solid #3498db;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .project-links a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .achievement-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .achievement-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .achievement-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-size: 0.8rem;
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .internship-item {
+            background: rgba(46, 204, 113, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #2ecc71;
+            transition: all 0.3s ease;
+        }
+
+        .internship-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.2);
+        }
+
+        .position-item {
+            background: rgba(230, 126, 34, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #e67e22;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .position-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                margin: 0;
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                gap: 1rem;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-info a {
+                justify-content: center;
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+
+            .education-header, .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .contact-info {
+                font-size: 0.9rem;
+            }
+
+            .education-item, .project-item, .achievement-item,
+            .internship-item, .position-item {
+                padding: 1rem;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+        }
+
+        /* Tablet specific styles */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .header {
+                background: #2c3e50;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>VIPIN PRATAP</h1>
+            <div class="contact-info">
+                <a href="mailto:s.pvimalpratap9458@gmail.com">📧 Email</a>
+                <a href="tel:+91-8218120174">📱 +91-8218120174</a>
+                <a href="https://github.com/vipupas" target="_blank">🔗 GitHub</a>
+                <a href="https://www.linkedin.com/in/vipin-pratap-b1213b1b2/" target="_blank">💼 LinkedIn</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">EDUCATIONAL QUALIFICATIONS</h2>
+                <div class="education-item">
+                    <div class="education-header">
+                        <div>
+                            <div class="degree">B.Tech CSE (4th Sem)</div>
+                            <div class="institution">Dr. Akhilesh Das Gupta Institute of Professional Studies, New Delhi</div>
+                        </div>
+                        <div class="duration">2023-2027</div>
+                    </div>
+                </div>
+                <div class="education-item">
+                    <div class="education-header">
+                        <div>
+                            <div class="degree">Class XII</div>
+                            <div class="institution">Army Public School, BAREILLY, UP</div>
+                        </div>
+                        <div class="duration">2021-2022</div>
+                    </div>
+                </div>
+                <div class="education-item">
+                    <div class="education-header">
+                        <div>
+                            <div class="degree">Class X</div>
+                            <div class="institution">Army Public School, BAREILLY, UP</div>
+                        </div>
+                        <div class="duration">2019-2020</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">TECHNICAL SKILLS</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <div class="skill-title">PYTHON</div>
+                        <div class="skill-list">OpenCV, FastAPI, Numpy, Pandas<br><strong>MYSQL</strong></div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-title">C++ / C</div>
+                        <div class="skill-list">Node making(ros), DSA<br>HTML, CSS, JS, HTMX</div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-title">ROS</div>
+                        <div class="skill-list">Humble 22.04 / Jazzy 24.04<br>MicroRos, RViz, Gazebo<br>MoveIt, Linux</div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-title">Arduino IDE</div>
+                        <div class="skill-list">ESP32, UNO R3<br>Raspberry Pi5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">INTERNSHIPS</h2>
+                <div class="internship-item">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">Edunet-Shell Skills4Future</div>
+                            <div class="institution">Green skills & AI</div>
+                        </div>
+                        <div class="duration">July 2025</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">PROJECTS</h2>
+                <div class="project-item">
+                    <div class="project-title">System Tray Indicator</div>
+                    <p>Shows real time <strong>temperature</strong>, <strong>pressure</strong>, and <strong>altitude</strong> from ESP32 and BMP180</p>
+                    <div class="project-links">
+                        <a href="https://github.com/vipupas/Learn-Linux-Indicator/tree/main/sensor_data_frm_esp32" target="_blank">View Project</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">Autonomous Navigation ROS2</div>
+                    <p>Nav2 Navigation Stack implementation</p>
+                    <div class="project-links">
+                        <a href="https://github.com/vipupas/ros2_testbed-T1_ws" target="_blank">View Project</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">Stone Paper Scissor</div>
+                    <p>OpenCV and mediapipe based Game</p>
+                    <div class="project-links">
+                        <a href="https://github.com/vipupas/Learn-OpenCV/tree/main/Stone_Paper_Scissor" target="_blank">View Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">ACADEMIC & EXTRA-CURRICULAR ACHIEVEMENTS</h2>
+                <div class="achievement-item">
+                    <div class="project-header">
+                        <div class="project-title">ISRO IRoC-u: (Rover Making)</div>
+                        <div class="duration">Dec 2023 - Feb 2024</div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li>Constructed <strong>autonomous rover</strong> equipped with a <strong>six-degree-of-freedom</strong> robotic arm</li>
+                        <li>Imported <strong>URDF</strong> model into the <strong>simulation</strong> environment using Gazebo plugins</li>
+                        <li>Attained position among the <strong>top 50</strong> colleges nationwide during the <strong>preliminary round</strong></li>
+                        <li>Applied: <span class="highlight">ROS2, MoveIt, Gazebo, and RViz</span></li>
+                    </ul>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="project-header">
+                        <div class="project-title">ROBOFEST- GUJARAT 4.0: (Rover Making Competition)</div>
+                        <div class="duration">Feb 2024 - Jan 2025</div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li>Selected in <strong>top 16</strong> colleges nationwide. <strong>Qualified 2 rounds</strong></li>
+                        <li><strong>Level 1</strong> ideation round received <strong>₹50k</strong></li>
+                        <li><strong>Level 2</strong> working model round received <strong>₹2Lac</strong></li>
+                        <li>Applied: <span class="highlight">ROS2(Jazzy), RViz, Gazebo11, ESP32 programming</span></li>
+                    </ul>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="project-header">
+                        <div class="project-title">ISRO IRoC-u: (Drones for GPS Denied Environments)</div>
+                        <div class="duration">Dec 2024 - May 2025</div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li>Working on <strong>coordinates</strong> finding <strong>without GPS</strong></li>
+                        <li>Clear <strong>preliminary round</strong></li>
+                        <li>Applied: <span class="highlight">ROS2, RTabMap, yolo</span></li>
+                    </ul>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="project-title">Active HACKATHON Participant</div>
+                    <p>SIH 24, Flipkart Grid 6.0, DPBH, HackOrbit@25</p>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="project-title">Active CTF Participant</div>
+                    <p>BIT-SEC-CON 0X1, H4CKP13T 0X01</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">POSITIONS OF RESPONSIBILITY</h2>
+                <div class="position-item">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">Tech Member, GEEKS FOR GEEKS (GFG)</div>
+                            <div class="institution">Technical Society of ADGIPS</div>
+                        </div>
+                        <div class="duration">Oct 2023 - Present</div>
+                    </div>
+                </div>
+                <div class="position-item">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">Cyber Security, Google Development Society (GDGC)</div>
+                            <div class="institution">Technical Society of ADGIPS</div>
+                        </div>
+                        <div class="duration">Nov 2023 - Present</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
